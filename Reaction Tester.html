@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>demojava</title>
+    <style media="screen">
+    #square{
+      height: 200px;
+      width: 200px;
+      background-color: red;
+      display: none;
+      position: relative;
+
+    }
+
+    </style>
+  </head>
+  <body>
+
+    <p>Time Taken:  <span id="timetaken"></span>
+    <div id="square"></div>
+
+    <script type="text/javascript">
+    function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+    var start=new Date().getTime();
+    function makeobjectappear(){
+      var top=Math.random()*500;
+      var left=Math.random()*700;
+      var right=Math.random()*700;
+      var dimension=(Math.random()*300)+100;
+      var borderradius=Math.random()*200;
+      document.getElementById('square').style.backgroundColor=getRandomColor();
+      document.getElementById('square').style.top=top+'px';
+      document.getElementById('square').style.left=left+'px';
+      document.getElementById('square').style.right=right+'px';
+      document.getElementById('square').style.height=dimension+'px';
+      document.getElementById('square').style.width=dimension+'px';
+      document.getElementById('square').style.borderRadius=borderradius+'px';
+
+      document.getElementById('square').style.display='block';
+      start=new Date().getTime();
+    }
+    function appearAfterDelay(){
+    setTimeout(makeobjectappear,Math.random()*2000);
+  }
+    appearAfterDelay();
+     //here we put settuimeout function inside a another functin because we need to call set timeout function again inside the inclick function
+  //and it is advised not to call the same fucntion again inside the same script, so here in this cASE WE aare not calling it directly!
+
+      document.getElementById('square').onclick=function() {
+
+      document.getElementById('square').style.display='none';
+      var end=new Date().getTime();
+      var timetakened=(end-start)/1000;
+      document.getElementById('timetaken').innerHTML=timetakened+'s';
+      appearAfterDelay();
+
+
+    }
+
+
+
+
+    </script>
+
+
+  </body>
+</html>
